@@ -5,6 +5,7 @@ class Solution(object):
         :type s2: str
         :rtype: bool
         """
+#         
         temp = {}
         start = 0
         matched = 0
