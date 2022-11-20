@@ -22,10 +22,6 @@ class Solution(object):
 
         def closest_number(arr, k, x):
             mid_index = binary_search(arr, k, x)
-            # if mid_index == 0:
-            #     return arr[mid_index : k]
-            # elif mid_index == len(arr) - 1:
-            #     return arr[len(arr) - k :]
             start = mid_index - k
             end = mid_index + k
             if mid_index - k < 0:
