@@ -9,10 +9,6 @@ class Solution:
                 digits[i] = digits[i] + 1
                 val = True
                 break
-            elif digits[i] == 0:
-                digits[i] = digits[i] + 1
-                val = True
-                break
         if val == False:
             res.extend(digits)
             return res
