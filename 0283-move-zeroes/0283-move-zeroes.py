@@ -12,8 +12,6 @@ class Solution:
                 start += 1
                 end += 1
             else:
-                if nums[start] == 0:
-                    end += 1
-                else:
+                if nums[start] != 0:
                     start += 1
-                    end += 1
+                end += 1
