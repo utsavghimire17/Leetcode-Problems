@@ -9,11 +9,8 @@ class Solution:
             if nums[end] != 0:
                 if nums[start] == 0:
                     nums[start],nums[end] = nums[end],nums[start]
-                    start += 1
-                    end += 1
-                elif nums[start] != 0:
-                    start += 1
-                    end += 1
+                start += 1
+                end += 1
             else:
                 if nums[start] == 0:
                     end += 1
