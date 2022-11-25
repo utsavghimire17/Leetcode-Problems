@@ -10,8 +10,7 @@ class Solution:
                 if nums[start] == 0:
                     nums[start],nums[end] = nums[end],nums[start]
                 start += 1
-                end += 1
             else:
                 if nums[start] != 0:
                     start += 1
-                end += 1
+            end += 1
