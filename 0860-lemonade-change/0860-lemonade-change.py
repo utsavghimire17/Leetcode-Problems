@@ -10,10 +10,8 @@ class Solution:
                     if nums - 5 in temp:
                         if temp[nums-5] >= (nums-5)//5:
                             temp[nums-5] -= (nums-5)//5
-                        else:
-                            return False
-                    else:
-                        return False
+                            continue
+                    return False
                 elif nums - 5 > 5:
                     if 10 in temp and temp[10] >= 1:
                         if 5 in temp and temp[5] >= 1:
