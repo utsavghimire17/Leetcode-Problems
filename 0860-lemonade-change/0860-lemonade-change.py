@@ -17,15 +17,11 @@ class Solution:
                         if 5 in temp and temp[5] >= 1:
                             temp[10] -= 1
                             temp[5] -=1
-                        else:
-                            return False
+                            continue
                     elif 5 in temp:
                         if temp[5] >= (nums-5)//5:
                             temp[5] -= (nums-5)//5
-                        else:
-                            return False
-                    else:
-                        return False
-
+                            continue
+                    return False
         return True
 
