@@ -1,14 +1,21 @@
-class Solution:
-    def majorityElement(self, nums: List[int]) -> int:
-        end = 0
-        start = 0
-        max_val = 0
-        nums.sort()
-        while end < len(nums):
-            if nums[start] == nums[end]:
-                max_val = max(max_val,end-start+1)
-                if max_val > len(nums)//2:
-                    return nums[start]
-                end += 1
-            elif nums[start] != nums[end]:
-                start = end
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        curr_num = nums[0]
+        count = 0
+        max_count = float('-inf')
+        for num in nums:
+            if num == curr_num:
+                count += 1
+            else:
+                count -= 1
+            if count == 0:
+                curr_num = num
+                count = 1
+            if count >= max_count:
+                max_count = count
+                curr_num = num
+        return curr_num
