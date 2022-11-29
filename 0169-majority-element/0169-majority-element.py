@@ -15,7 +15,7 @@ class Solution(object):
             if count == 0:
                 curr_num = num
                 count = 1
-            # if count >= max_count:
-            #     max_count = count
-            #     curr_num = num
+            if count >= max_count:
+                max_count = count
+                curr_num = num
         return curr_num
