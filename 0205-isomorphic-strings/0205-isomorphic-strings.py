@@ -1,5 +1,6 @@
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
+#         Created a counter map to keep track of number of elements and char_map to map the character of s to character of t.
         temp_s = {}
         temp_t = {}
         char_map = {}
