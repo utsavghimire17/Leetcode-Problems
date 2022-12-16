@@ -13,8 +13,9 @@ class MyQueue:
     def peek(self) -> int:
         if self.front == []:
             self.stack()
-        return self.front[-1]
-
+        temp = self.front.pop()
+        self.front.append(temp)
+        return temp
     def empty(self) -> bool:
         if self.front:
             return len(self.front) == 0
