@@ -1,33 +1,26 @@
-class Solution(object):
-    def minWindow(self, s, t):
-        """
-        :type s: str
-        :type t: str
-        :rtype: str
-        """
-        start = 0
-        end = 0
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        l = 0
+        have = 0
+        window = {}
         temp = {}
-        count = len(t)
-        min_window = float('inf')
-        min_string = ""
-        for char in t:
-            temp[char] = 1 + temp.get(char,0)
-        while end < len(s):
-            while end < len(s) and count > 0:
-                if s[end] in temp:
-                    if temp[s[end]] > 0:
-                        count -= 1
-                    temp[s[end]] -= 1
-                end += 1
-            while start < end and count == 0:
-                if min_window > end - start:
-                    min_window = end - start
-                    min_string = s[start:end]
-                if s[start] in temp:
-                    if temp[s[start]] >= 0:
-                        count += 1
-                    temp[s[start]] += 1
-                
-                start += 1
-        return "".join(min_string)
+        res = [-1,-1]
+        res_len = float('inf')
+        for i in t:
+            temp[i] = 1 + temp.get(i,0)
+        need = len(temp)
+        for r in range(len(s)):
+            if s[r] in temp:
+                window[s[r]] = 1 + window.get(s[r],0)
+                if window[s[r]] == temp[s[r]]:
+                    have += 1
+            while have == need:
+                if res_len > r - l + 1:
+                    res_len = r - l + 1
+                    res = [l,r]
+                if s[l] in window:
+                    window[s[l]] -= 1
+                    if window[s[l]] < temp[s[l]]:
+                        have -= 1
+                l += 1
+        return s[res[0]:res[1]+1]        
