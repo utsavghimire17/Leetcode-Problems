@@ -1,13 +1,20 @@
-class Solution:
-    def sortColors(self, nums: List[int]) -> None:
+class Solution(object):
+    def sortColors(self, nums):
         """
-        Do not return anything, modify nums in-place instead.
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
         """
-        sorted_colors = [0] * 3
-        prev_index = 0
-        for num in nums:
-            sorted_colors[num] += 1
-        for idx in range(len(sorted_colors)):
-            nums[prev_index:prev_index + sorted_colors[idx] + 1] = [idx] * sorted_colors[idx]
-            prev_index += sorted_colors[idx]
-        return nums   
+        low = 0
+        mid = 0
+        high = len(nums) -1 
+        while mid <= high:
+            if nums[mid] == 0:
+                nums[low],nums[mid] = nums[mid],nums[low]
+                low += 1
+                mid += 1
+            elif nums[mid] == 1:
+                mid += 1
+            elif nums[mid] == 2:
+                nums[mid],nums[high] = nums[high],nums[mid]
+                high -= 1
+        return nums
