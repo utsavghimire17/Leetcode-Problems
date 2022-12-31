@@ -16,12 +16,11 @@ class Solution(object):
         while temp:
             count += 1
             temp = temp.next
-        print(count)
         curr = head
         if count == 1 or count == n:
             return curr.next
         while curr:
-            if new_count == count - n - 1 or count == n:
+            if new_count == count - n - 1:
                 curr.next = curr.next.next
             curr = curr.next
             new_count += 1
