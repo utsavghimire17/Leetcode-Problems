@@ -1,10 +1,7 @@
-class Solution(object):
-    def twoSum(self, nums, target):
-        hold={}
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        temp = {}
         for i in range(len(nums)):
-            if target-nums[i] in hold:
-                return [hold[target-nums[i]],i]
-            else:
-                hold[nums[i]]=i
-                        
-        
+            if target - nums[i] in temp:
+                return [i,temp[target - nums[i]]]
+            temp[nums[i]] = i
