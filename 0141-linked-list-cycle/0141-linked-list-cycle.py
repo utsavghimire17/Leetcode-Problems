@@ -17,12 +17,20 @@ class Solution:
         #     fast = fast.next.next
         # return False
         
+        # curr = head
+        # while curr:
+        #     if curr.val == None:
+        #         return True
+        #     curr.val = None
+        #     curr = curr.next
+        # return False
+
+        temp = set()
         curr = head
         while curr:
-            if curr.val == None:
+            if curr in temp:
                 return True
-            curr.val = None
+            temp.add(curr)
             curr = curr.next
         return False
-
             
