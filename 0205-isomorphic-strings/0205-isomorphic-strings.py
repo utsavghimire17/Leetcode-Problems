@@ -5,11 +5,29 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
-        map_s = {}
-        map_t = {}
-        for c1,c2 in zip(s,t):
-            if (c1 in map_s and map_s[c1] != c2) or (c2 in map_t and map_t[c2] != c1):
-                return False
-            map_s[c1] = c2
-            map_t[c2] = c1
+        
+        if len(s) != len(t):
+            return False
+        
+        replace_map = dict()
+        
+        for i in range(len(s)):
+            
+            if s[i] in replace_map:
+                if replace_map[s[i]] != t[i]:
+                    return False
+            else:
+                replace_map[s[i]] = t[i]
+        
+        replace_map = dict()
+        
+        for i in range(len(t)):
+            
+            if t[i] in replace_map:
+                if replace_map[t[i]] != s[i]:
+                    return False
+            else:
+                replace_map[t[i]] = s[i]
+        
+        
         return True
