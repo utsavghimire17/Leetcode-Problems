@@ -1,10 +1,21 @@
 class Solution:
     def findJudge(self, n: int, trust: List[List[int]]) -> int:
-        count = [0]*(n+1)
-        for i in range(len(trust)):
-            count[trust[i][1]] += 1
-            count[trust[i][0]] -= 1
-        for i in range(1,len(count)):
-            if count[i] == n-1:
-                return i
+        cand = {}
+        ignore = set()
+        judge = -1
+        if not trust:
+            if n % 2 == 0:
+                return -1
+            return 1
+        for i in trust:
+            cand[i[1]] = []
+            ignore.add(i[0])
+        for i in trust:
+            cand[i[1]].append(i[0])
+        for cands in cand:
+            if len(cand[cands]) == n - 1:
+                if cands not in ignore:
+                    return cands
         return -1
+                
+        
