@@ -24,13 +24,13 @@ class Solution(object):
             l2 = l2.next
             i *= 10
         total = sum1 + sum2
-        total_str = str(total)
-        print(total_str)
-        head = ListNode(int(total_str[-1]))
+        head = ListNode(total % 10)
         curr = head
-        for i in range(len(total_str)-2,-1,-1):
-            node = ListNode(int(total_str[i]))
+        total = total // 10
+        while total:
+            node = ListNode(total % 10)
             curr.next = node
             curr = curr.next
+            total = total // 10
         return head
     
