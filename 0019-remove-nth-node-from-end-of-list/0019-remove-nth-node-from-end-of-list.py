@@ -1,28 +1,24 @@
 # Definition for singly-linked list.
-# class ListNode(object):
+# class ListNode:
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class Solution(object):
-    def removeNthFromEnd(self, head, n):
-        """
-        :type head: ListNode
-        :type n: int
-        :rtype: ListNode
-        """
-        temp = head
-        count = 0
-        new_count = 0
-        while temp:
-            count += 1
-            temp = temp.next
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         curr = head
-        if count == 1 or count == n:
+        temp = head
+        length = 0
+        val = 0
+        while temp:
+            length += 1
+            temp = temp.next
+        if length == 1 or length == n:
             return curr.next
-        while curr:
-            if new_count == count - n - 1:
+        while curr.next:
+            if val + 1 == length - n:
                 curr.next = curr.next.next
-            curr = curr.next
-            new_count += 1
+            else:
+                curr = curr.next
+            val += 1
         return head
-            
+        
