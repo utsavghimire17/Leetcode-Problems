@@ -1,16 +1,19 @@
-class Solution(object):
-    def pivotIndex(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        total = sum(nums)
-        total1 = 0
-        if total == nums[0]:
-            return 0
-        for index in range(len(nums)-1):
-            total1 += nums[index]
-            if total - nums[index+1] == 2*total1:
-                return index+1
+class Solution:
+    def pivotIndex(self, nums: List[int]) -> int:
+        prefix_nums = []
+        postfix_nums = [0] * len(nums)
+        prefix = 0
+        postfix = 0
+        for i in nums:
+            prefix_nums.append(prefix)
+            prefix += i
+        for i in range(len(nums) -1 , -1,-1):
+            postfix_nums[i] = postfix
+            postfix += nums[i]
+        for idx in range(len(nums)):
+            if prefix_nums[idx] == postfix_nums[idx]:
+                return idx
             
         return -1
+        
+        
