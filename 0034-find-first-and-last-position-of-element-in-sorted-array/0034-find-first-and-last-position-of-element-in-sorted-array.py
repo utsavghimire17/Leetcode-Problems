@@ -7,7 +7,7 @@ class Solution(object):
         """
         left = self.bin_search(nums,target,True)
         right = self.bin_search(nums,target,False)
-        return [right,left]
+        return [left,right]
     
     def bin_search(self,nums,target,leftbias):
         l = 0
@@ -22,8 +22,8 @@ class Solution(object):
             else:
                 i = m
                 if leftbias:
-                    l = m + 1
-                else:
                     r = m - 1
+                else:
+                    l = m + 1
         return i
           
