@@ -5,14 +5,25 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        first = -1
-        last = -1
-        first_occur = False
-        for i in range(len(nums)):
-            if nums[i] == target:
-                if first_occur == False:
-                    first = i
-                    first_occur = True
-                if first_occur == True:
-                    last = i
-        return [first,last]
+        left = self.bin_search(nums,target,True)
+        right = self.bin_search(nums,target,False)
+        return [right,left]
+    
+    def bin_search(self,nums,target,leftbias):
+        l = 0
+        r = len(nums) - 1
+        i = -1
+        while l <= r:
+            m = (l + r) // 2
+            if nums[m] > target:
+                r = m - 1
+            elif nums[m] < target:
+                l = m + 1
+            else:
+                i = m
+                if leftbias:
+                    l = m + 1
+                else:
+                    r = m - 1
+        return i
+          
