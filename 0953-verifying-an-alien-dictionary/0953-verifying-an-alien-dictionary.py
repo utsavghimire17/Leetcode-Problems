@@ -1,16 +1,22 @@
-class Solution:
-    def isAlienSorted(self, words: List[str], order: str) -> bool:
+class Solution(object):
+    def isAlienSorted(self, words, order):
+        """
+        :type words: List[str]
+        :type order: str
+        :rtype: bool
+        """
         order_map = {}
-        for idx  in range(len(order)):
+        for idx in range(len(order)):
             order_map[order[idx]] = idx
-        for i in range(len(words)-1):
-            if words[i] == words[i+1]:
+        for idx in range(len(words)-1):
+            if words[idx] == words[idx+1]:
                 continue
-            for idx in range(min(len(words[i]),len(words[i+1]))):
-                if order_map[words[i][idx]] > order_map[words[i+1][idx]]:
+            for i in range(min(len(words[idx]),len(words[idx+1]))):
+                if order_map[words[idx][i]] > order_map[words[idx+1][i]]:
                     return False
-                elif order_map[words[i][idx]] < order_map[words[i+1][idx]]:
+                elif order_map[words[idx][i]] < order_map[words[idx+1][i]]:
                     break
-                if idx == len(words[i+1]) - 1:
+                if i == len(words[idx+1]) - 1:
                     return False
         return True
+            
