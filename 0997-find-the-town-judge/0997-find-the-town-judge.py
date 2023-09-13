@@ -1,16 +1,21 @@
-class Solution(object):
-    def findJudge(self, n, trust):
-        """
-        :type n: int
-        :type trust: List[List[int]]
-        :rtype: int
-        """
-      
-        count = [0] * n
+class Solution:
+    def findJudge(self, n: int, trust: List[List[int]]) -> int:
+        cand = {}
+        ignore = set()
+        judge = -1
+        if not trust:
+            if n % 2 == 0:
+                return -1
+            return 1
         for i in trust:
-            count[i[1] - 1] += 1
-            count[i[0] - 1] -= 1
-        for idx in range(len(count)):
-            if count[idx] == n - 1:
-                return idx + 1
+            cand[i[1]] = []
+            ignore.add(i[0])
+        for i in trust:
+            cand[i[1]].append(i[0])
+        for cands in cand:
+            if len(cand[cands]) == n - 1:
+                if cands not in ignore:
+                    return cands
         return -1
+                
+        
