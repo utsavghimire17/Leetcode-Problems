@@ -3,16 +3,16 @@ class Solution:
         start = 0
         end = 0
         curr_sum = 0
-        res = float("inf")
+        min_path = float('inf')
         while end < len(nums):
             curr_sum += nums[end]
-            if curr_sum >= target:
-                res = min(res, end - start + 1)
+            while curr_sum > target:
+                min_path = min(min_path, end- start + 1)
                 curr_sum -= nums[start]
-                curr_sum -= nums[end]
                 start += 1
-            else:
-                end += 1
-        if res == float("inf"):
+            if curr_sum == target:
+                min_path = min(min_path, end- start + 1)
+            end += 1
+        if min_path == float("inf"):
             return 0
-        return res
+        return min_path
