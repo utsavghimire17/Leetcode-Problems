@@ -6,34 +6,35 @@ class Solution(object):
         :type x: int
         :rtype: List[int]
         """
-        def binary_search(arr, k, x):
+        def binarySearch(arr,x):
             start = 0
             end = len(arr) - 1
-            mid = 0
             while start <= end:
-                mid = (start + end)//2
+                mid = (start + end) // 2
                 if arr[mid] == x:
-                    return mid 
-                elif arr[mid] > x:
-                    end = mid - 1
+                    return mid
                 elif arr[mid] < x:
                     start = mid + 1
+                elif arr[mid] > x:
+                    end = mid - 1
             return mid
-
-        def closest_number(arr, k, x):
-            mid_index = binary_search(arr, k, x)
-            start = mid_index - k
-            end = mid_index + k
-            if mid_index - k < 0:
+        
+        def closestElement(arr, k ,x):
+            mid = binarySearch(arr,x)
+            start = mid - k 
+            if start < 0:
                 start = 0
-            if mid_index + k >= len(arr):
+            end = mid + k
+            if end >= len(arr):
                 end = len(arr) - 1
-            while end - start + 1 > k:
-                if abs(arr[start] - x) <= abs(arr[end] - x):
+            while end - start + 1 != k:
+                if abs(arr[start] - x) < abs(arr[end] - x):
                     end -= 1
-                else:
+                elif abs(arr[start] - x) > abs(arr[end] - x):
                     start += 1
-            return arr[start:end+1] 
-        binary_search(arr,k,x)
-        return closest_number(arr,k,x)
+                else:
+                    end -= 1
+            return arr[start:end+1]
+        return closestElement(arr,k,x)
+            
                 
