@@ -1,14 +1,14 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        temp = {}
-        frequency = []
+        top_k = set()
+        freq = {}
         res = []
         for num in nums:
-            temp[num] = 1 + temp.get(num,0)
-        for keys,values in temp.items():
-            frequency.append((keys,values))
-        frequency.sort(key=lambda x:x[1], reverse = True)
-        for idx in range(k):
-            res.append(frequency[idx][0])
+            freq[num] = 1 + freq.get(num,0)
+        for keys,values in freq.items():
+            top_k.add((keys,values))
+            if len(top_k) > k:
+                top_k.remove(min(top_k, key=lambda x:x[1]))
+        for val in top_k:
+            res.append(val[0])
         return res
-            
