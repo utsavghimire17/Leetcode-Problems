@@ -9,10 +9,12 @@ class Solution:
             "D" : 500,
             "M" : 1000
         }
-        int_sum = temp[s[-1]]
-        for idx in range(len(s)-1):
-            if temp[s[idx]] < temp[s[idx + 1]]:
-                int_sum -= temp[s[idx]]
+        curr_sum = temp[s[-1]]
+        curr = temp[s[-1]]
+        for idx in range(len(s)-2,-1,-1):
+            if temp[s[idx]] < curr:
+                curr_sum -= temp[s[idx]]
             else:
-                int_sum += temp[s[idx]]
-        return int_sum
+                curr_sum += temp[s[idx]]
+            curr = temp[s[idx]]
+        return curr_sum
