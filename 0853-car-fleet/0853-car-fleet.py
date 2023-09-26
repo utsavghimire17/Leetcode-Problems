@@ -4,6 +4,7 @@ class Solution:
         stack = []
         for pos in range(len(position)):
             time[position[pos]] = (target - position[pos]) / speed[pos]
+        print(time)
         position.sort()
         for pos in position:
             while stack and time[stack[-1]] <= time[pos]:
