@@ -10,28 +10,28 @@ class Solution(object):
         :type head: ListNode
         :rtype: bool
         """
-#         if not head:
-#             return None
-        
-#         curr = head
-#         slow = head
-#         fast = head.next
-#         while fast and fast.next:
-#             if slow == fast:
-#                 return True
-#             slow = slow.next
-#             fast = fast.next.next
-#         return False
-    
-    
         if not head:
             return None
+        
         curr = head
-        while curr:
-            if curr.val == None:
+        slow = head
+        fast = head
+        while fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
                 return True
-            curr.val = None
-            curr = curr.next
         return False
+    
+    
+        # if not head:
+        #     return None
+        # curr = head
+        # while curr:
+        #     if curr.val == None:
+        #         return True
+        #     curr.val = None
+        #     curr = curr.next
+        # return False
 
         
