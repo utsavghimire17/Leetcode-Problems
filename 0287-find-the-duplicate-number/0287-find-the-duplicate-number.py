@@ -4,8 +4,13 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        nums.sort()
-        for i in range(len(nums)-1):
-            if nums[i] == nums[i+1]:
-                return nums[i]
-        
+        for i in nums:
+            if i < 0:
+                if nums[-1 * i] < 0:
+                    return -1 * i
+                nums[-1 * i] *= -1
+            else:
+                if nums[1 * i] < 0:
+                    return i
+                nums[i] *= -1
+          
