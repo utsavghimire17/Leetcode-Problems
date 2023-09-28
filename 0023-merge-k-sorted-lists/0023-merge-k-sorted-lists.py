@@ -9,14 +9,13 @@ class Solution:
         for l_list in lists:
             curr = l_list
             while curr:
-                res.append(curr.val)
+                heapq.heappush(res,curr.val)
                 curr = curr.next
         if not res:
             return None
-        res.sort()
-        head = ListNode(res[0])
+        head = ListNode(heapq.heappop(res))
         curr = head
-        for i in range(1,len(res)):
-            curr.next = ListNode(res[i])
+        while res:
+            curr.next = ListNode(heapq.heappop(res))
             curr = curr.next
         return head
