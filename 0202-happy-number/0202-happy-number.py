@@ -4,11 +4,15 @@ class Solution(object):
         :type n: int
         :rtype: bool
         """
-        for i in range(10):
-            n = self.splitter(n)
-            print(n)
+        seen = set()
+        while True:
+            if n in seen:
+                return False
             if n == 1 or n == 10 or n == 100 or n == 1000:
                 return True
+            else:
+                seen.add(n)
+            n = self.splitter(n)
         return False
     
     def splitter(self,n):
