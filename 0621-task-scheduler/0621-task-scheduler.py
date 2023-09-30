@@ -1,10 +1,5 @@
-class Solution(object):
-    def leastInterval(self, tasks, n):
-        """
-        :type tasks: List[str]
-        :type n: int
-        :rtype: int
-        """
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
         queue = deque()
         heap = []
         count = {}
@@ -12,18 +7,17 @@ class Solution(object):
         for val in tasks:
             count[val] = 1 + count.get(val,0)
         for val in count.values():
-            heap.append(val)
-        
+            heap.append(-1 * val)
+        heapq.heapify(heap)
         while len(heap) or queue:
-            heap.sort()
             time += 1
             if heap:
-                max_elem = heap.pop()
-                max_elem -= 1
-                if max_elem > 0:
+                max_elem = heapq.heappop(heap)
+                max_elem += 1
+                if max_elem:
                     queue.append([max_elem, time + n ])
             if queue and queue[0][1] == time:
                 queued_task = queue.popleft()
-                heap.append(queued_task[0])
+                heapq.heappush(heap,queued_task[0])
             
         return time
