@@ -6,14 +6,15 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         res = []
-        for idx in range(len(intervals)):
-            if newInterval[1] < intervals[idx][0]:
+        for i in range(len(intervals)):
+            if newInterval[1] < intervals[i][0]:
                 res.append(newInterval)
-                return res + intervals[idx:]
-            if newInterval[0] > intervals[idx][1]:
-                res.append(intervals[idx])
-            if newInterval[0] <= intervals[idx][1]:
-                newInterval = [min(intervals[idx][0],newInterval[0]), max(intervals[idx][1],newInterval[1])]
-        res.append(newInterval)
-        return res
+                return res + intervals[i:]
+            elif newInterval[0] <= intervals[i][1]:
+                newInterval = [min(newInterval[0],intervals[i][0]),max(newInterval[1],intervals[i][1])]
+            else:
+                res.append(intervals[i])
                 
+        if newInterval:
+            res.append(newInterval)
+        return res
