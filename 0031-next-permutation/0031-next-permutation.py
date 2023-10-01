@@ -3,21 +3,37 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        break_point = -1
-        for i in range(len(nums)-2,-1,-1):
-            if nums[i] < nums[i+1]:
-                break_point = i
+        breakpoint = -1
+        i = 1
+        for i in range(len(nums)-1,0,-1):
+            if nums[i-1] < nums[i]:
+                breakpoint = i - 1
                 break
-        if break_point == -1:
-            nums.reverse()
-            return
-        for j in range(len(nums)-1,break_point,-1):
-            if nums[j] > nums[break_point]:
-                nums[break_point], nums[j] = nums[j], nums[break_point]
-                break
-        start = break_point + 1
+        print(breakpoint)
+        if breakpoint < 0:
+            return nums.reverse()
+        
+        else:
+            print(nums)
+            print("T")
+            next_max = float('inf')
+            for j in range(breakpoint+1,len(nums)):
+                if nums[j] > nums[breakpoint] and nums[j] <= next_max:
+                    next_max = nums[j]
+                    index = j
+                
+            print(next_max)
+            
+            nums[breakpoint],nums[index] = nums[index], nums[breakpoint]
+            print(nums)
+        start = breakpoint + 1
         end = len(nums) - 1
-        while start < end:
-            nums[start],nums[end] = nums[end], nums[start]
+        while start <= end:
+            if nums[start] > nums[end]:
+                nums[start],nums[end] = nums[end],nums[start]
             start += 1
             end -= 1
+        
+        return nums
+        
+            
