@@ -1,35 +1,33 @@
 # Definition for a binary tree node.
-# class TreeNode(object):
+# class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
-    def isSameTree(self, p, q):
-        """
-        :type p: TreeNode
-        :type q: TreeNode
-        :rtype: bool
-        """
-        if p and not q or q and not p:
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if not p and q or not q and p:
             return False
         if not p and not q:
             return True
-        stackp = [p]
-        stackq = [q]
-        while stackp and stackq:
-            nodep = stackp.pop()
-            nodeq = stackq.pop()
+        stack_p = [p]
+        stack_q = [q]
+        while stack_p and stack_q:
+            nodep = stack_p.pop()
+            nodeq = stack_q.pop()
             if nodep.val != nodeq.val:
                 return False
-            if not nodep.right and nodeq.right or not nodeq.right and nodep.right:
+            if nodep.right and not nodeq.right or nodeq.right and not nodep.right:
                 return False
-            if not nodep.left and nodeq.left or not nodeq.left and nodep.left:
+            if nodeq.left and not nodep.left or nodeq.left and not nodep.left:
                 return False
-            if nodep.right and nodeq.right:
-                stackp.append(nodep.right)
-                stackq.append(nodeq.right)
             if nodep.left and nodeq.left:
-                stackp.append(nodep.left)
-                stackq.append(nodeq.left)
-        return True
+                stack_p.append(nodep.left)
+                stack_q.append(nodeq.left)
+            if nodep.right and nodeq.right:
+                stack_p.append(nodep.right)
+                stack_q.append(nodeq.right)
+        return stack_p == stack_q
+        
+        
+        
