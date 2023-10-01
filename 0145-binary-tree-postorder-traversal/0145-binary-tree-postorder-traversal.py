@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        if root is None:
+        if not root:
             return None
         s1 = [root]
         s2 = []
