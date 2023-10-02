@@ -1,28 +1,28 @@
 # Definition for a binary tree node.
-# class TreeNode(object):
+# class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
-    def kthSmallest(self, root, k):
-        """
-        :type root: TreeNode
-        :type k: int
-        :rtype: int
-        """
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        heap = []
+        heapq.heapify(heap)
         if not root:
             return None
-        stack = []
-        curr = root
-        while curr:
-            stack.append(curr)
-            curr= curr.left
-            while curr is None and stack:
-                node = stack.pop()
-                k -= 1
-                if k == 0:
-                    return node.val
-                curr = node.right
-        
-        
+        queue = deque()
+        queue.append(root)
+        while queue:
+            for i in range(len(queue)):
+                node = queue.popleft()
+                heapq.heappush(heap, -1 * node.val)
+                if len(heap) > k:
+                    heapq.heappop(heap)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+        while len(heap) > k:
+            heapq.heappop(heap)
+        min_elem = heapq.heappop(heap)
+        return -1 * min_elem
