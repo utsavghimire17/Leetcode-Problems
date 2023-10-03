@@ -1,33 +1,20 @@
-class Solution(object):
-    def isIsomorphic(self, s, t):
-        """
-        :type s: str
-        :type t: str
-        :rtype: bool
-        """
-        
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+#         Created a counter map to keep track of number of elements and char_map to map the character of s to character of t.
         if len(s) != len(t):
             return False
-        
-        replace_map = dict()
-        
+        char_s = {}
+        char_t = {}
         for i in range(len(s)):
-            
-            if s[i] in replace_map:
-                if replace_map[s[i]] != t[i]:
+            if s[i] in char_s and char_s[s[i]] not in char_t or t[i] in char_t and char_t[t[i]] not in char_s:
+                return False
+            if s[i] in char_s:
+                if char_s[s[i]] != t[i]:
                     return False
-            else:
-                replace_map[s[i]] = t[i]
-        
-        replace_map = dict()
-        
-        for i in range(len(t)):
-            
-            if t[i] in replace_map:
-                if replace_map[t[i]] != s[i]:
+            if t[i] in char_t:
+                if char_t[t[i]] != s[i]:
                     return False
-            else:
-                replace_map[t[i]] = s[i]
-        
-        
+            if s[i] not in char_s and t[i] not in char_t:
+                char_s[s[i]] = t[i]
+                char_t[t[i]] = s[i]
         return True
