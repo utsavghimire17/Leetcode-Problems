@@ -1,35 +1,24 @@
 # Definition for singly-linked list.
-# class ListNode(object):
+# class ListNode:
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class Solution(object):
-    def partition(self, head, x):
-        """
-        :type head: ListNode
-        :type x: int
-        :rtype: ListNode
-        """
-        if not head:
-            return None
-        dummy = ListNode(0)
-        final_curr = dummy
-        res = []
-        final_res = []
+class Solution:
+    def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
+        lesser_dummy = ListNode()
+        l_curr = lesser_dummy
+        greater_dummy = ListNode()
+        h_curr = greater_dummy
         curr = head
         while curr:
-            res.append(curr)
+            if curr.val < x:
+                l_curr.next = curr
+                l_curr = l_curr.next
+            elif curr.val >= x:
+                print(curr.val)
+                h_curr.next = curr
+                h_curr = h_curr.next
             curr = curr.next
-        print(res)
-        for node in res:
-            if node.val != x and node.val < x:
-                final_res.append(node.val)
-        for node in res:
-            if node.val >= x:
-                final_res.append(node.val)
-        for i in final_res:
-            i = ListNode(i)
-            final_curr.next = i
-            final_curr = final_curr.next
-        return dummy.next
-        
+        h_curr.next = None
+        l_curr.next = greater_dummy.next
+        return lesser_dummy.next
