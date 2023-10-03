@@ -4,19 +4,21 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
-        j = len(s)
-        curr_word = ""
-        count = 0
-        for i in range(len(s) - 1 , -1 ,-1):
-            if s[i] == " ":
-                count += 1
-                if count > 1:
-                    j = i
-                    continue
-                curr_word += s[i+1:j] + " "
-                j = i
+        s = s.strip()
+        res = ""
+        curr_string = ""
+        space_count = 0
+        for i in range(len(s)):
+            if s[i] != " ":
+                curr_string += s[i]
+                space_count = 0
             else:
-                count = 0
-        else:
-            curr_word += s[i:j] 
-        return curr_word.strip()
+                space_count += 1
+                if space_count == 1:
+                    res = " " + curr_string + res
+                curr_string = ""
+                
+        if curr_string:
+            res = curr_string + res
+        res.strip()
+        return res
