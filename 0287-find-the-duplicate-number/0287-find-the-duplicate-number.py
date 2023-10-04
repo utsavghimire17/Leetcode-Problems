@@ -10,7 +10,7 @@ class Solution(object):
                     return -1 * i
                 nums[-1 * i] *= -1
             else:
-                if nums[1 * i] < 0:
+                if nums[i] < 0:
                     return i
                 nums[i] *= -1
           
